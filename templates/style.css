@@ -1,0 +1,92 @@
+:root {
+  --border: #e5e7eb;
+  --text: #111827;
+  --muted: #6b7280;
+  --bg: #ffffff;
+  --blue: #2563eb;
+  --error-bg: #fef2f2;
+  --error-text: #991b1b;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 24px;
+  font-family: Arial, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+}
+
+.header { max-width: 900px; margin: 0 auto 16px; }
+.title { font-size: 1.4rem; font-weight: 700; }
+.subtitle { margin-top: 6px; color: var(--muted); }
+
+.container { max-width: 900px; margin: 0 auto; }
+
+.card {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+  margin-top: 16px;
+}
+
+.error {
+  border-left: 4px solid #ef4444;
+  background: var(--error-bg);
+  color: var(--error-text);
+}
+
+.form { display: flex; gap: 12px; flex-wrap: wrap; align-items: flex-start; }
+.field { flex: 1; min-width: 280px; }
+label { font-weight: 600; }
+
+input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #cfd4dc;
+  border-radius: 10px;
+  margin-top: 6px;
+}
+
+.hint { margin-top: 6px; color: var(--muted); font-size: 0.9rem; }
+.hint code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+
+.buttons { display: flex; gap: 10px; align-items: center; }
+.btn {
+  padding: 10px 14px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  cursor: pointer;
+  background: #f3f4f6;
+}
+.btn.primary { background: var(--blue); color: white; border-color: var(--blue); }
+.btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+.row { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.sectionTitle { font-weight: 700; }
+
+.badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: #f3f4f6;
+  font-size: 0.85rem;
+}
+
+.preview {
+  margin-top: 12px;
+  max-width: 100%;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+}
+
+.block { margin-top: 14px; }
+.label { font-weight: 600; margin-bottom: 6px; }
+
+.mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; white-space: pre-wrap; }
+.box {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px;
+  background: #fafafa;
+  min-height: 44px;
+}

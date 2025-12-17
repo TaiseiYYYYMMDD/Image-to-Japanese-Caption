@@ -1,20 +1,87 @@
-<!-- <!DOCTYPE html> -->
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <!-- <title>My First Flask App</title> -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Image → EN → JA</title>
+
+  <!-- ★変更：templates内のCSSを読み込む -->
+  <link rel="stylesheet" href="{{ url_for('assets', filename='style.css') }}">
 </head>
 <body>
-    <!-- <h1>Hello from HTML</h1>
-    <p>This page is rendered by Flask.</p> -->
-    <form method="POST">
-        <label>Image path:</label>
-        <input type="text" name="image_path" value="{{ image_path }}" style="width: 400px;">
-        <button type="submit">Run</button>
-    </form>
-    
-    <p>English: {{ english_text }}</p>
-    <p>Japanese: {{ japanese_text }}</p>
 
+  <header class="header">
+    <div class="title">Image Caption + Translation</div>
+    <div class="subtitle">Enter an image path and run the pipeline.</div>
+  </header>
+
+  <main class="container">
+
+    <section class="card">
+      <form method="POST" id="runForm" class="form">
+        <div class="field">
+          <label for="image_path">Image path</label>
+          <input
+            id="image_path"
+            type="text"
+            name="image_path"
+            value="{{ image_path }}"
+            placeholder="e.g. static/uploads/dummy.jpg"
+            autocomplete="off"
+          />
+          <div class="hint">
+            Do not include quotes. Example:
+            <code>C:\Users\...\image.jpg</code> or <code>static/uploads/xxx.jpg</code>
+          </div>
+        </div>
+
+        <div class="buttons">
+          <button class="btn primary" type="submit" id="runBtn">Run</button>
+          <button class="btn" type="button" id="clearBtn">Clear</button>
+        </div>
+      </form>
+    </section>
+
+    {% if error_message %}
+      <section class="card error">
+        <b>Error:</b> {{ error_message }}
+      </section>
+    {% endif %}
+
+    {% if image_path and image_path.startswith('static/') %}
+      <section class="card">
+        <div class="row">
+          <div class="sectionTitle">Preview</div>
+          <span class="badge">static path</span>
+        </div>
+        <img class="preview" src="/{{ image_path }}" alt="preview">
+      </section>
+    {% endif %}
+
+    <section class="card">
+      <div class="row">
+        <div class="sectionTitle">Output</div>
+        {% if english_text or japanese_text %}
+          <span class="badge">done</span>
+        {% else %}
+          <span class="badge">idle</span>
+        {% endif %}
+      </div>
+
+      <div class="block">
+        <div class="label">English</div>
+        <div class="mono box">{{ english_text }}</div>
+      </div>
+
+      <div class="block">
+        <div class="label">Japanese</div>
+        <div class="mono box">{{ japanese_text }}</div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ★変更：templates内のJSを読み込む -->
+  <script src="{{ url_for('assets', filename='app.js') }}"></script>
 </body>
 </html>
