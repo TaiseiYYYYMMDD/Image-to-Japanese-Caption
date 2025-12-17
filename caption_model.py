@@ -1,0 +1,1 @@
+caption_image(image_path: str) -> str
