@@ -1,6 +1,8 @@
 from flask import Flask, render_template, request
 from caption_model import caption_image
-from translate_model import translate_en_to_ja
+#from translate_model import translate_en_to_ja
+from translate_model_nllb import translate_en_to_ja
+
 
 app = Flask(__name__)
 
