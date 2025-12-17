@@ -1,0 +1,4 @@
+# requirements.txt（翻訳担当で最低限）
+transformers
+torch
+sentencepiece
