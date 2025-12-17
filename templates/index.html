@@ -7,8 +7,14 @@
 <body>
     <!-- <h1>Hello from HTML</h1>
     <p>This page is rendered by Flask.</p> -->
-      <p>English: {{ english_text }}</p>
-      <p>Japanese: {{ japanese_text }}</p>
+    <form method="POST">
+        <label>Image path:</label>
+        <input type="text" name="image_path" value="{{ image_path }}" style="width: 400px;">
+        <button type="submit">Run</button>
+    </form>
+    
+    <p>English: {{ english_text }}</p>
+    <p>Japanese: {{ japanese_text }}</p>
 
 </body>
 </html>
