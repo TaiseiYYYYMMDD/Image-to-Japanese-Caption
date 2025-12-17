@@ -39,12 +39,13 @@ body {
 .field { flex: 1; min-width: 280px; }
 label { font-weight: 600; }
 
-input[type="text"] {
+input[type="file"] {
   width: 100%;
   padding: 10px;
   border: 1px solid #cfd4dc;
   border-radius: 10px;
   margin-top: 6px;
+  background: #fff;
 }
 
 .hint { margin-top: 6px; color: var(--muted); font-size: 0.9rem; }

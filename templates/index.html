@@ -4,34 +4,30 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Image → EN → JA</title>
-
-  <!-- ★変更：templates内のCSSを読み込む -->
   <link rel="stylesheet" href="{{ url_for('assets', filename='style.css') }}">
 </head>
 <body>
 
   <header class="header">
     <div class="title">Image Caption + Translation</div>
-    <div class="subtitle">Enter an image path and run the pipeline.</div>
+    <div class="subtitle">Upload an image and run the pipeline.</div>
   </header>
 
   <main class="container">
 
     <section class="card">
-      <form method="POST" id="runForm" class="form">
+      <!-- ★ファイルアップロードなので enctype が必須 -->
+      <form method="POST" id="runForm" class="form" enctype="multipart/form-data" autocomplete="off">
         <div class="field">
-          <label for="image_path">Image path</label>
+          <label for="image_file">Image file</label>
           <input
-            id="image_path"
-            type="text"
-            name="image_path"
-            value="{{ image_path }}"
-            placeholder="e.g. static/uploads/dummy.jpg"
-            autocomplete="off"
+            id="image_file"
+            type="file"
+            name="image_file"
+            accept=".jpg,.jpeg,.png,.webp"
           />
           <div class="hint">
-            Do not include quotes. Example:
-            <code>C:\Users\...\image.jpg</code> or <code>static/uploads/xxx.jpg</code>
+            Supported: <code>.jpg .jpeg .png .webp</code>
           </div>
         </div>
 
@@ -48,13 +44,17 @@
       </section>
     {% endif %}
 
-    {% if image_path and image_path.startswith('static/') %}
+    <!-- ★POST後、保存できたときだけプレビュー -->
+    {% if show_preview and image_path %}
       <section class="card">
         <div class="row">
           <div class="sectionTitle">Preview</div>
-          <span class="badge">static path</span>
+          <span class="badge">uploaded</span>
         </div>
         <img class="preview" src="/{{ image_path }}" alt="preview">
+        <div class="hint" style="margin-top:8px;">
+          <code>{{ image_path }}</code>
+        </div>
       </section>
     {% endif %}
 
@@ -81,7 +81,6 @@
 
   </main>
 
-  <!-- ★変更：templates内のJSを読み込む -->
   <script src="{{ url_for('assets', filename='app.js') }}"></script>
 </body>
 </html>

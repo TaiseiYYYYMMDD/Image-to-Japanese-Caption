@@ -1,19 +1,19 @@
-// Clear button (client-side only)
-const clearBtn = document.getElementById("clearBtn");
-const imageInput = document.getElementById("image_path");
-if (clearBtn && imageInput) {
-  clearBtn.addEventListener("click", () => {
-    imageInput.value = "";
-    imageInput.focus();
-  });
-}
-
-// Disable button while submitting (prevents double submit)
 const form = document.getElementById("runForm");
 const runBtn = document.getElementById("runBtn");
+const clearBtn = document.getElementById("clearBtn");
+const fileInput = document.getElementById("image_file");
+
 if (form && runBtn) {
   form.addEventListener("submit", () => {
     runBtn.disabled = true;
     runBtn.textContent = "Running...";
+  });
+}
+
+if (clearBtn && fileInput) {
+  clearBtn.addEventListener("click", () => {
+    fileInput.value = "";
+    // 画面上の結果を消したいなら、リロードが一番シンプル
+    // location.href = "/";
   });
 }
