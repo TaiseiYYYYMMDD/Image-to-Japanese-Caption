@@ -1,1 +1,1 @@
-translate_en_to_ja(text: str) -> str
+#translate_en_to_ja(text: str) -> str
